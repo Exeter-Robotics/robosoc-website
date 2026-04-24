@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TeamCard from '../components/TeamCard.astro';
+import team from '../data/team.json';
+---
+
+<BaseLayout title="Team | RoboSoc" description="Meet the RoboSoc committee for 2025/2026.">
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title">Our team</h1>
+      <p class="page-intro">The 2025/2026 committee running RoboSoc at the University of Exeter.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="team-grid">
+        {team.map(member => (
+          <TeamCard {...member} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    margin-bottom: 1rem;
+  }
+
+  .page-intro {
+    font-size: 1.1rem;
+    color: var(--text-mid);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: 1.5rem;
+  }
+</style>

@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import projects from '../../data/projects.json';
+
+export function getStaticPaths() {
+  return projects.map(p => ({
+    params: { slug: p.slug },
+    props: { project: p },
+  }));
+}
+
+const { project } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const imgSrc = project.image ? `${base}${project.image.replace(/^\//, '')}` : null;
+---
+
+<BaseLayout title={`${project.name} | RoboSoc`} description={project.short}>
+  <section class="section">
+    <div class="container">
+      <a href={`${base}projects`} class="back-link">&larr; All projects</a>
+
+      <article class="project-detail">
+        {imgSrc && (
+          <div class="project-detail-image">
+            <img src={imgSrc} alt={project.name} />
+          </div>
+        )}
+
+        <div class="project-detail-body">
+          <span class="tag">{project.category}</span>
+          <h1>{project.name}</h1>
+
+          <div class="project-description">
+            <p>{project.description}</p>
+          </div>
+
+          {project.tags && project.tags.length > 0 && (
+            <div class="project-tech">
+              <h3>Tech stack</h3>
+              <div class="tech-list">
+                {project.tags.map(t => <span class="tech-tag">{t}</span>)}
+              </div>
+            </div>
+          )}
+
+          {project.contributors && project.contributors.length > 0 && (
+            <div class="project-contributors">
+              <h3>Contributors</h3>
+              <ul>
+                {project.contributors.map(c => <li>{c}</li>)}
+              </ul>
+            </div>
+          )}
+
+          <div class="project-links">
+            {project.links?.github && (
+              <a href={project.links.github} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                GitHub
+              </a>
+            )}
+            {project.links?.demo && (
+              <a href={project.links.demo} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                Live demo
+              </a>
+            )}
+            {project.links?.tutorial && (
+              <a href={project.links.tutorial} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Tutorial
+              </a>
+            )}
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .back-link {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+
+  .back-link:hover {
+    color: var(--orange);
+  }
+
+  .project-detail-image {
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    margin-bottom: 2rem;
+    max-height: 400px;
+  }
+
+  .project-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-detail-body h1 {
+    margin: 0.75rem 0 1.5rem;
+  }
+
+  .project-description {
+    margin-bottom: 2rem;
+  }
+
+  .project-description p {
+    line-height: 1.7;
+    max-width: 65ch;
+  }
+
+  .project-tech {
+    margin-bottom: 2rem;
+  }
+
+  .project-tech h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tech-tag {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(245, 242, 236, 0.04);
+    color: var(--text-mid);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  .project-contributors {
+    margin-bottom: 2rem;
+  }
+
+  .project-contributors h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-contributors ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .project-contributors li {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    padding: 0.25rem 0.75rem;
+    background: var(--navy);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+</style>

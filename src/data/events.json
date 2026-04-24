@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "title": "Introduction to Robotics",
+    "date": "2025-11-14T16:00:00Z",
+    "location": "Building: One, Pearson Teaching Room",
+    "coords": null,
+    "tag": "workshop",
+    "short": "An overview of robotics for beginners, covering key concepts and what the society does.",
+    "description": "Our very first workshop. We covered what robotics is, the different areas (hardware, software, control, perception), and what RoboSoc will be doing throughout the year. A great starting point for anyone curious about the field.",
+    "image": "/images/events/intro-robotics.png",
+    "signupUrl": null
+  },
+  {
+    "id": 2,
+    "title": "Arduino TinkerCAD Workshop",
+    "date": "2025-11-21T16:00:00Z",
+    "location": "Building: One, Pearson Teaching Room",
+    "coords": null,
+    "tag": "workshop",
+    "short": "Learn Arduino basics through TinkerCAD's online simulator.",
+    "description": "An introduction to Arduino programming using TinkerCAD's free online circuit simulator. Members learned how to wire up LEDs, read sensors, and write basic sketches without needing any physical hardware.",
+    "image": "/images/events/arduino-tinkercad.png",
+    "signupUrl": null
+  },
+  {
+    "id": 3,
+    "title": "Arduino TinkerCAD Workshop (Part 2)",
+    "date": "2025-11-28T16:00:00Z",
+    "location": "Building: One, Pearson Teaching Room",
+    "coords": null,
+    "tag": "workshop",
+    "short": "Continued Arduino learning with more advanced circuits and logic.",
+    "description": "Part two of our Arduino series. We built on the basics from the first session, working with motor drivers, serial communication, and more complex sensor setups in TinkerCAD.",
+    "image": "/images/events/arduino-tinkercad.png",
+    "signupUrl": null
+  },
+  {
+    "id": 4,
+    "title": "Mechanical Design (3D CAD) Workshop",
+    "date": "2025-12-05T16:00:00Z",
+    "location": "Building: One, Pearson Teaching Room",
+    "coords": null,
+    "tag": "workshop",
+    "short": "Hands-on intro to 3D CAD for designing robot parts.",
+    "description": "An introduction to mechanical design for robotics using 3D CAD software. Members learned how to model simple parts, think about tolerances, and prepare designs for 3D printing.",
+    "image": "/images/events/cad-workshop.png",
+    "signupUrl": null
+  },
+  {
+    "id": 5,
+    "title": "Intro to 3D Printing (+ FabLab Induction)",
+    "date": "2026-01-29T15:00:00Z",
+    "location": "Harrison MakerSpace, University of Exeter",
+    "coords": null,
+    "tag": "workshop",
+    "short": "Learn to 3D print and get inducted into the Harrison FabLab.",
+    "description": "A practical session on 3D printing: from slicing a model to running a print. Members also got inducted into the Harrison MakerSpace FabLab, giving them access to printers and other fabrication tools for their projects.",
+    "image": "/images/events/3d-printing.png",
+    "signupUrl": null
+  },
+  {
+    "id": 6,
+    "title": "Line Following Robot Workshop Series",
+    "date": "2026-02-18T14:30:00Z",
+    "location": "Harrison Building, University of Exeter",
+    "coords": null,
+    "tag": "workshop",
+    "short": "Built and programmed line-following robots from scratch.",
+    "description": "Our flagship workshop series. Members assembled line-following robots from kits, wired up IR sensors, wrote the control logic in Arduino, and tested them on a track. 30 members attended and built working robots by the end of the session.",
+    "image": "/images/events/line-follower.png",
+    "signupUrl": null
+  },
+  {
+    "id": 7,
+    "title": "Mini Sumo Robot Competition",
+    "date": "2026-05-13T11:00:00Z",
+    "location": "University of Exeter",
+    "coords": null,
+    "tag": "competition",
+    "short": "Build a mini sumo robot and compete head-to-head. More details coming soon.",
+    "description": "Design, build, and program a mini sumo robot to push your opponent out of the ring. Full details (rules, weight class, kits) are coming soon. Join our WhatsApp group chat to stay updated and be the first to know when sign-ups open.",
+    "image": "/images/events/minisumorobot.png",
+    "signupUrl": "https://chat.whatsapp.com/G1G8XVwK77h7KwKsBWn9na"
+  }
+]

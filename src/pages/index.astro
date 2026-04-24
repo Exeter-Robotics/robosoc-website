@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ParticleBackground from '../components/ParticleBackground.astro';
+import TypewriterIntro from '../components/TypewriterIntro.astro';
+import SectionDivider from '../components/SectionDivider.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import EventCard from '../components/EventCard.astro';
+
+import newItems from '../data/new.json';
+import projects from '../data/projects.json';
+import events from '../data/events.json';
+
+const base = import.meta.env.BASE_URL;
+
+const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
+
+const now = Date.now();
+const dayBuffer = 24 * 60 * 60 * 1000;
+const upcomingEvents = events
+  .filter(e => new Date(e.date).getTime() > now - dayBuffer)
+  .sort((a, b) => new Date(a.date) - new Date(b.date))
+  .slice(0, 2);
+---
+
+<BaseLayout title="RoboSoc | Robotics Society at Exeter">
+  <ParticleBackground />
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner container">
+      <TypewriterIntro />
+      <p class="hero-subtitle fade-in-up">Robotics Society at the University of Exeter</p>
+      <div class="hero-ctas fade-in-up">
+        <a href={`${base}join`} class="btn btn-primary">Join us</a>
+        <a href={`${base}projects`} class="btn btn-outline">See projects</a>
+      </div>
+    </div>
+  </section>
+
+  <SectionDivider />
+
+  <!-- What's new -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">What's new</h2>
+      <div class="news-grid">
+        {newItems.map(item => (
+          <article class="news-item">
+            <time class="news-date">{item.date}</time>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured projects -->
+  {featuredProjects.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Featured projects</h2>
+        <div class="grid-3">
+          {featuredProjects.map(p => (
+            <ProjectCard {...p} />
+          ))}
+        </div>
+        <div class="section-link">
+          <a href={`${base}projects`}>View all projects &rarr;</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Upcoming events -->
+  {upcomingEvents.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Upcoming events</h2>
+        <div class="grid-2">
+          {upcomingEvents.map(e => (
+            <EventCard {...e} />
+          ))}
+        </div>
+        <div class="section-link">
+          <a href={`${base}events`}>View all events &rarr;</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <SectionDivider />
+
+  <!-- Join CTA -->
+  <section class="join-cta">
+    <div class="container">
+      <h2>Ready to build something?</h2>
+      <p>Join RoboSoc and be part of Exeter's robotics community. No experience needed.</p>
+      <a href={`${base}join`} class="btn btn-primary">Join RoboSoc</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-inner {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--text-mid);
+    margin-bottom: 2rem;
+    animation-delay: 0.3s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation-delay: 0.6s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 1.25rem;
+  }
+
+  .news-item {
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: var(--card-radius);
+    padding: 1.25rem;
+  }
+
+  .news-item h3 {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .news-item p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+  }
+
+  .news-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--orange);
+  }
+
+  .section-link {
+    margin-top: 1.5rem;
+    text-align: right;
+  }
+
+  .section-link a {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+  }
+
+  .join-cta {
+    background: var(--orange);
+    padding: 4rem 0;
+    text-align: center;
+    margin-top: var(--section-gap);
+  }
+
+  .join-cta h2 {
+    color: var(--navy-deep);
+    margin-bottom: 0.75rem;
+  }
+
+  .join-cta p {
+    color: var(--navy-deep);
+    opacity: 0.85;
+    margin: 0 auto 1.5rem;
+    max-width: 500px;
+  }
+
+  .join-cta .btn-primary {
+    background: var(--navy-deep);
+    color: var(--text-strong);
+    border-color: var(--navy-deep);
+  }
+
+  .join-cta .btn-primary:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+</style>

@@ -1,0 +1,40 @@
+[
+  {
+    "slug": "so101",
+    "name": "SO-101",
+    "category": "Hardware",
+    "short": "A fully 3D-printed robotic arm, assembled and programmed from scratch.",
+    "description": "The SO-101 is an open-source robotic arm designed for accessibility and education. Fully 3D-printed with off-the-shelf servos, it is capable of teleoperation and autonomous pick-and-place tasks. Built as a personal project to explore low-cost manipulator design and control.",
+    "tags": ["3D Printing", "Servos", "Python", "Robotics"],
+    "image": "/images/projects/so-101.jpg",
+    "links": {},
+    "featured": true,
+    "contributors": ["Kazybek Khairulla"]
+  },
+  {
+    "slug": "line-follower",
+    "name": "Line Follower Robot",
+    "category": "Hardware",
+    "short": "An Arduino-based line-following robot built as a workshop series.",
+    "description": "A line-following robot built using Arduino, IR sensors, and a motor driver. This was the focus of our workshop series where members learned the basics of electronics, sensor integration, and control logic. The project is based on an open-source Arduino design and adapted for our workshops.",
+    "tags": ["Arduino", "IR Sensors", "C++", "Motors"],
+    "image": "/images/events/line-follower.png",
+    "links": {
+      "tutorial": "https://projecthub.arduino.cc/lee_curiosity/building-a-line-following-robot-using-arduino-017dbb"
+    },
+    "featured": true,
+    "contributors": []
+  },
+  {
+    "slug": "elo",
+    "name": "Open Source wheeled humanoid (soon)",
+    "category": "Hardware",
+    "short": "A project we are contributing to. More info coming soon.",
+    "description": "Full write-up coming soon.",
+    "tags": [],
+    "image": null,
+    "links": {},
+    "featured": false,
+    "contributors": []
+  }
+]

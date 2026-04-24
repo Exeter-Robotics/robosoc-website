@@ -1,0 +1,46 @@
+---
+const text = "> welcome to robosoc_";
+---
+
+<div class="typewriter" aria-label={text.slice(0, -1)}>
+  <span id="typed"></span><span class="cursor">_</span>
+</div>
+
+<script>
+  const text = "> welcome to robosoc_";
+  const el = document.getElementById("typed");
+  let i = 0;
+
+  function type() {
+    if (i < text.length - 1) {
+      el.textContent += text[i];
+      i++;
+      setTimeout(type, 60 + Math.random() * 40);
+    }
+  }
+
+  if (!sessionStorage.getItem("introPlayed")) {
+    type();
+    sessionStorage.setItem("introPlayed", "true");
+  } else {
+    el.textContent = text.slice(0, -1);
+  }
+</script>
+
+<style>
+  .typewriter {
+    font-family: var(--font-mono);
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .cursor {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+</style>

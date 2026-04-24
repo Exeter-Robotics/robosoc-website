@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import projects from '../../data/projects.json';
+
+const categories = ['All', ...new Set(projects.map(p => p.category))];
+
+const submitFormUrl = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=d10qkZj77k6vMhM02PBKU4inYwSlvM1Brbb_PshjcIJUODlBSkdRV1JHQ1ZaMjJUUEVNUk9ORFVHVy4u';
+---
+
+<BaseLayout title="Projects | RoboSoc" description="Explore the robots and software projects built by RoboSoc members.">
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title">Projects</h1>
+      <p class="page-intro">Robots, software tools, and research built by our members. Every project is open to contributors.</p>
+      <div class="feature-cta">
+        <div class="feature-cta-text">
+          <strong>Built something cool?</strong>
+          <span>Feature your own robotics project on this page.</span>
+        </div>
+        <a href={submitFormUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Submit your project
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="filter-bar" id="filter-bar">
+        {categories.map(cat => (
+          <button class:list={['filter-btn', { active: cat === 'All' }]} data-category={cat}>
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div class="grid-3" id="projects-grid">
+        {projects.map(p => (
+          <div class="project-wrapper" data-category={p.category}>
+            <ProjectCard {...p} />
+          </div>
+        ))}
+      </div>
+
+      {projects.length === 0 && (
+        <p class="empty-state">No projects yet. Check back soon.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.project-wrapper');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cat = btn.dataset.category;
+      items.forEach(item => {
+        if (cat === 'All' || item.dataset.category === cat) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .page-title {
+    margin-bottom: 1rem;
+  }
+
+  .page-intro {
+    font-size: 1.1rem;
+    color: var(--text-mid);
+    margin-bottom: 2rem;
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .filter-btn.active {
+    background: var(--orange);
+    color: var(--navy-deep);
+    border-color: var(--orange);
+  }
+
+  .feature-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: var(--card-radius);
+  }
+
+  .feature-cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .feature-cta-text strong {
+    font-size: 1rem;
+    color: var(--text-bright);
+  }
+
+  .feature-cta-text span {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+  }
+
+  .empty-state {
+    color: var(--text-dim);
+    font-style: italic;
+    padding: 2rem;
+    text-align: center;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: var(--card-radius);
+  }
+</style>

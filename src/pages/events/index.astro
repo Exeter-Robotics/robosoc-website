@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EventCard from '../../components/EventCard.astro';
+import SectionDivider from '../../components/SectionDivider.astro';
+import events from '../../data/events.json';
+
+const now = Date.now();
+const dayBuffer = 24 * 60 * 60 * 1000;
+
+const upcoming = events
+  .filter(e => new Date(e.date).getTime() > now - dayBuffer)
+  .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+const past = events
+  .filter(e => new Date(e.date).getTime() <= now - dayBuffer)
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
+---
+
+<BaseLayout title="Events | RoboSoc" description="Workshops, build nights, talks, and competitions from RoboSoc.">
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title">Events</h1>
+      <p class="page-intro">Workshops, build nights, talks, and competitions. All events are open to every student at Exeter.</p>
+      <p class="page-intro fixr-note">
+        Get tickets and see live availability on our <a href="https://fixr.co/organiser/111882605" target="_blank" rel="noopener noreferrer">Fixr page</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <h2 class="section-title">Upcoming</h2>
+      {upcoming.length > 0 ? (
+        <div class="grid-2">
+          {upcoming.map(e => <EventCard {...e} />)}
+        </div>
+      ) : (
+        <p class="empty-state">No upcoming events right now. Check back soon or follow us on social media.</p>
+      )}
+    </div>
+  </section>
+
+  {past.length > 0 && (
+    <>
+      <SectionDivider />
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Past events</h2>
+          <div class="grid-2">
+            {past.map(e => <EventCard {...e} />)}
+          </div>
+        </div>
+      </section>
+    </>
+  )}
+</BaseLayout>
+
+<style>
+  .page-title {
+    margin-bottom: 1rem;
+  }
+
+  .page-intro {
+    font-size: 1.1rem;
+    color: var(--text-mid);
+    margin-bottom: 0.5rem;
+  }
+
+  .fixr-note {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+  }
+
+  .empty-state {
+    color: var(--text-dim);
+    font-style: italic;
+    padding: 2rem;
+    text-align: center;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: var(--card-radius);
+  }
+</style>

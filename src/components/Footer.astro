@@ -1,0 +1,193 @@
+---
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+
+const navLinks = [
+  { label: 'Home', href: `${base}` },
+  { label: 'About', href: `${base}about` },
+  { label: 'Events', href: `${base}events` },
+  { label: 'Projects', href: `${base}projects` },
+  { label: 'Team', href: `${base}team` },
+  { label: 'Join', href: `${base}join` },
+];
+---
+
+<footer class="footer">
+  <div class="footer-inner container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <div class="footer-logo-row">
+          <img src={`${base}exrs_logo.jpg`} alt="EXRS logo" class="footer-logo-img" />
+          <span class="footer-logo">EXRS</span>
+        </div>
+        <p>The Robotics Society at the University of Exeter. Building, programming, and competing with robots.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Pages</h4>
+        <ul>
+          {navLinks.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h4>Connect</h4>
+        <ul>
+          <li>
+            <a href="https://my.exeterguild.com/groups/9264X/robotics-society" target="_blank" rel="noopener noreferrer" aria-label="Exeter Guild">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Exeter Guild
+            </a>
+          </li>
+          <li>
+            <a href="https://discord.gg/H3HHrYE2wk" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Discord
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/exeter-robotics-society" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/Exeter-Robotics/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a href="https://linktr.ee/robotics_exeter" target="_blank" rel="noopener noreferrer" aria-label="Linktree">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="5 12 12 5 19 12"/><line x1="5" y1="19" x2="19" y2="19"/></svg>
+              Linktree
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {year} RoboSoc (EXRS), University of Exeter</p>
+      <p class="footer-credit">
+        Built by RoboSoc.
+        <a href="https://github.com/Exeter-Robotics/robosoc-website.git" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--navy);
+    border-top: 1px solid var(--border);
+    padding: 3rem 0 1.5rem;
+    margin-top: var(--section-gap);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .footer-logo {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-about p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .footer-links h4,
+  .footer-social h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-strong);
+    margin-bottom: 1rem;
+  }
+
+  .footer-links ul,
+  .footer-social ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-links a,
+  .footer-social a {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-links a:hover,
+  .footer-social a:hover {
+    color: var(--orange);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-bottom p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  .footer-credit a {
+    color: var(--text-dim);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .footer-credit a:hover {
+    color: var(--orange);
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

@@ -1,0 +1,27 @@
+[
+  {
+    "title": "RoboSoc founded",
+    "date": "2025-09-01",
+    "text": "Society officially recognised by the Students' Guild."
+  },
+  {
+    "title": "First committee elected",
+    "date": "2025-10-01",
+    "text": "Founding committee begins planning the year."
+  },
+  {
+    "title": "Workshop series kicks off",
+    "date": "2025-11-14",
+    "text": "Introduction to Robotics, our first ever event. Followed by Arduino and CAD workshops."
+  },
+  {
+    "title": "Line Follower Workshop",
+    "date": "2026-02-18",
+    "text": "30 members built and programmed line-following robots in one session."
+  },
+  {
+    "title": "Mini Sumo Competition announced",
+    "date": "2026-04-20",
+    "text": "Build a mini sumo robot and compete head-to-head. Coming this June."
+  }
+]

@@ -1,0 +1,210 @@
+---
+const currentPath = Astro.url.pathname;
+const base = import.meta.env.BASE_URL;
+
+const links = [
+  { label: 'Home', href: `${base}` },
+  { label: 'About', href: `${base}about` },
+  { label: 'Events', href: `${base}events` },
+  { label: 'Projects', href: `${base}projects` },
+  { label: 'Team', href: `${base}team` },
+  { label: 'Join', href: `${base}join` },
+];
+
+function isActive(href) {
+  const clean = currentPath.replace(/\/+$/, '') || '/';
+  const target = href.replace(/\/+$/, '') || '/';
+  return clean === target;
+}
+---
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href={base} class="topbar-logo" aria-label="RoboSoc home">
+      <img src={`${base}exrs_logo.jpg`} alt="EXRS logo" class="logo-img" />
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <nav class="topbar-nav" id="topbar-nav" aria-label="Main navigation">
+      <ul>
+        {links.map(link => (
+          <li>
+            <a href={link.href} class:list={['nav-link', { active: isActive(link.href) }]}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('topbar-nav');
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    });
+  }
+</script>
+
+<style>
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(26, 35, 50, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .topbar-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--page-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .topbar-logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+
+  .logo-text {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.05em;
+  }
+
+  .topbar-nav ul {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--text-strong);
+    background: rgba(245, 242, 236, 0.04);
+  }
+
+  .nav-link.active {
+    color: var(--orange);
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0.75rem;
+    right: 0.75rem;
+    height: 2px;
+    background: var(--orange);
+    border-radius: 1px;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 110;
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-strong);
+    transition: transform 0.3s, opacity 0.3s;
+    border-radius: 1px;
+  }
+
+  .hamburger.open .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger.open .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+    }
+
+    .topbar-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--navy-deep);
+      border-left: 1px solid var(--border);
+      padding: 5rem 2rem 2rem;
+      transition: right 0.3s ease;
+      z-index: 105;
+    }
+
+    .topbar-nav.open {
+      right: 0;
+    }
+
+    .topbar-nav ul {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .nav-link {
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      display: block;
+    }
+
+    .nav-link.active::after {
+      left: 1rem;
+      right: auto;
+      width: 20px;
+    }
+  }
+</style>

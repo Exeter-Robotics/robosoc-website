@@ -1,0 +1,112 @@
+---
+const { name, role, bio, image, socials = {} } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const imgSrc = image ? `${base}${image.replace(/^\//, '')}` : null;
+const initials = name.split(' ').map(n => n[0]).join('');
+---
+
+<article class="team-card card">
+  <div class="team-card-image">
+    {imgSrc ? (
+      <img src={imgSrc} alt={`Photo of ${name}`} loading="lazy" />
+    ) : (
+      <div class="team-card-placeholder">
+        <span>{initials}</span>
+      </div>
+    )}
+  </div>
+  <div class="team-card-body">
+    <h3 class="team-card-name">{name}</h3>
+    <span class="tag">{role}</span>
+    <p class="team-card-bio">{bio}</p>
+    {Object.keys(socials).length > 0 && (
+      <div class="team-card-socials">
+        {socials.github && (
+          <a href={socials.github} target="_blank" rel="noopener noreferrer" aria-label={`${name} on GitHub`}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+        )}
+        {socials.linkedin && (
+          <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${name} on LinkedIn`}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+</article>
+
+<style>
+  .team-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .team-card-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .team-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .team-card-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--navy-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .team-card-placeholder span {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--orange);
+  }
+
+  .team-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .team-card-name {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .team-card-bio {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .team-card-socials {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .team-card-socials a {
+    color: var(--text-dim);
+    transition: color 0.2s;
+  }
+
+  .team-card-socials a:hover {
+    color: var(--orange);
+  }
+</style>

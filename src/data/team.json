@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Kazybek Khairulla",
+    "role": "President",
+    "bio": "Second-year Computer Science at Exeter. Interested in industrial robotics, teleoperation, and humanoids.",
+    "image": "/images/team/kazybek.jpg",
+    "socials": {
+      "linkedin": "https://www.linkedin.com/in/kazybek-khairulla/",
+      "github": "https://github.com/Kazybekkh"
+    }
+  },
+  {
+    "name": "Ruslan Akhmetov",
+    "role": "Vice President",
+    "bio": "Helping coordinate society operations and strategy.",
+    "image": "/images/team/ruslan.jpg",
+    "socials": {}
+  },
+  {
+    "name": "Zarreen Peeroo",
+    "role": "Marketing Officer",
+    "bio": "Managing outreach, social media, and brand for RoboSoc.",
+    "image": "/images/team/zarreen.jpg",
+    "socials": {}
+  },
+  {
+    "name": "Genki Asahi",
+    "role": "Hardware Guy",
+    "bio": "Hands-on with electronics, mechanical design, and prototyping.",
+    "image": "/images/team/genki.jpg",
+    "socials": {}
+  },
+  {
+    "name": "Mert Celik",
+    "role": "Events Coordinator",
+    "bio": "Planning and running workshops, build nights, and talks.",
+    "image": "/images/team/mert.jpg",
+    "socials": {}
+  },
+  {
+    "name": "Phoebe Say",
+    "role": "Project Coordinator",
+    "bio": "Keeping our projects on track and contributors aligned.",
+    "image": "/images/team/phoebe.jpg",
+    "socials": {}
+  },
+  {
+    "name": "Kieran Clarke",
+    "role": "Treasurer",
+    "bio": "Managing society finances and funding applications.",
+    "image": "/images/team/kieran.jpg",
+    "socials": {}
+  }
+]

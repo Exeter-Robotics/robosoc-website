@@ -1,0 +1,94 @@
+---
+const { id, title, date, tag, short, image } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const imgSrc = image ? `${base}${image.replace(/^\//, '')}` : null;
+const eventDate = new Date(date);
+const formatted = eventDate.toLocaleDateString('en-GB', {
+  weekday: 'short',
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+});
+const time = eventDate.toLocaleTimeString('en-GB', {
+  hour: '2-digit',
+  minute: '2-digit',
+});
+---
+
+<a href={`${base}events/${id}`} class="event-card card">
+  <div class="event-card-image">
+    {imgSrc ? (
+      <img src={imgSrc} alt={title} loading="lazy" />
+    ) : (
+      <div class="event-card-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+    )}
+  </div>
+  <div class="event-card-body">
+    <span class="tag">{tag}</span>
+    <h3>{title}</h3>
+    <p class="event-card-date">{formatted} at {time}</p>
+    <p class="event-card-short">{short}</p>
+  </div>
+</a>
+
+<style>
+  .event-card {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+  }
+
+  .event-card-image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--navy-light);
+    border-radius: var(--card-radius) var(--card-radius) 0 0;
+  }
+
+  .event-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .event-card:hover .event-card-image img {
+    transform: scale(1.05);
+  }
+
+  .event-card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+  }
+
+  .event-card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .event-card-body h3 {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .event-card-date {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--orange);
+  }
+
+  .event-card-short {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+</style>
