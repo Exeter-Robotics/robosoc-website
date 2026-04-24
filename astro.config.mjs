@@ -1,8 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://exeter-robotics.github.io',
-  base: '/robosoc-website',
+  site: 'https://exrs.co.uk',
   output: 'static',
   build: {
     assets: 'assets',
