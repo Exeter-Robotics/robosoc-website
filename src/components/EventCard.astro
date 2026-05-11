@@ -1,18 +1,25 @@
 ---
-const { id, title, date, tag, short, image } = Astro.props;
+const { id, title, date, dateLabel, tag, short, image } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const imgSrc = image ? `${base}${image.replace(/^\//, '')}` : null;
-const eventDate = new Date(date);
-const formatted = eventDate.toLocaleDateString('en-GB', {
-  weekday: 'short',
-  day: 'numeric',
-  month: 'short',
-  year: 'numeric',
-});
-const time = eventDate.toLocaleTimeString('en-GB', {
-  hour: '2-digit',
-  minute: '2-digit',
-});
+
+let displayDate;
+if (dateLabel) {
+  displayDate = dateLabel;
+} else {
+  const eventDate = new Date(date);
+  const formatted = eventDate.toLocaleDateString('en-GB', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+  const time = eventDate.toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  displayDate = `${formatted} at ${time}`;
+}
 ---
 
 <a href={`${base}events/${id}`} class="event-card card">
@@ -28,7 +35,7 @@ const time = eventDate.toLocaleTimeString('en-GB', {
   <div class="event-card-body">
     <span class="tag">{tag}</span>
     <h3>{title}</h3>
-    <p class="event-card-date">{formatted} at {time}</p>
+    <p class="event-card-date">{displayDate}</p>
     <p class="event-card-short">{short}</p>
   </div>
 </a>

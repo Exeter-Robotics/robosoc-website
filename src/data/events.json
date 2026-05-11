@@ -74,12 +74,13 @@
   {
     "id": 7,
     "title": "Mini Sumo Robot Competition",
-    "date": "2026-05-13T11:00:00Z",
+    "date": "2026-10-01T00:00:00Z",
+    "dateLabel": "Sep–Oct 2026 (TBD)",
     "location": "University of Exeter",
     "coords": null,
     "tag": "competition",
     "short": "Build a mini sumo robot and compete head-to-head. More details coming soon.",
-    "description": "Design, build, and program a mini sumo robot to push your opponent out of the ring. Full details (rules, weight class, kits) are coming soon. Join our WhatsApp group chat to stay updated and be the first to know when sign-ups open.",
+    "description": "Design, build, and program a mini sumo robot to push your opponent out of the ring. We're aiming to run this in September or October 2026 — full details (date, rules, weight class, kits) will be confirmed closer to the time. Join our WhatsApp group chat to stay updated and be the first to know when sign-ups open.",
     "image": "/images/events/minisumorobot.png",
     "signupUrl": "https://chat.whatsapp.com/G1G8XVwK77h7KwKsBWn9na"
   }
